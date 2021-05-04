@@ -16,24 +16,18 @@ const apiCalls = () => {
     console.log(JSON.stringify(requirementObject));
 
     requirementObject.forEach(reqObj => {
-        //create full url as per reqObj
-        console.log('creating url');
         let dataForUrl = `district_id=${reqObj.district_id}&date=${moment().format('DD-MM-YYYY')}`;
         const finalUrl = `${calendarByDistrictUrl}${dataForUrl}`;
-
-        console.log(reqObj.name);
 
         https.get(finalUrl, (resp) => {
             let data = '';
             
-            // A chunk of data has been received.
             resp.on('data', (chunk) => {
               data += chunk;
             });
         
             // The whole response has been received. Print out the result.
             resp.on('end', () => {
-              console.log('End');
               console.log(data);
             });
           }).on("error", (err) => {
@@ -42,4 +36,4 @@ const apiCalls = () => {
     });
 }
 
-module.exports = ({cronjobFunc, apiCalls});
+module.exports = ({cronjobFunc});
