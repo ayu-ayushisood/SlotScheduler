@@ -51,11 +51,11 @@ const parseData = (data, name) => {
       const availableCapacity = session.available_capacity;
       const minAgeLimit = session.min_age_limit;
 
-      if (availableCapacity > 0) {
+      if (availableCapacity > 0 && minAgeLimit !== 45) {
         return {
           name: centerName,
-          // address: address,
-          // pincode: pincode,
+          address: address,
+          pincode: pincode,
           available: availableCapacity,
           date: date,
           // min_age_limit: minAgeLimit,
