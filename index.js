@@ -15,4 +15,4 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-cron.schedule('* * * * *', cronjobFunc.cronjobFunc);
+cron.schedule('5 * * * * *', cronjobFunc.cronjobFunc);
