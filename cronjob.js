@@ -13,7 +13,6 @@ const apiCall = () => {
         
         // A chunk of data has been received.
         resp.on('data', (chunk) => {
-          console.log('normal');
           data += chunk;
         });
     
