@@ -1,4 +1,5 @@
 const http = require('http');
+const cronjobFunc = require('./cronjob.js');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -15,6 +16,8 @@ const server = http.createServer((req, res) => {
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
-cron.schedule('* * * * *', () => {
-  console.log('running a task every minute');
-});
+
+let districtUrl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?';
+
+cron.schedule('* * * * *', cronjobFunc.cronjobFunc);
+// cronjobFunc.apiCall();
