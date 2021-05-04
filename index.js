@@ -17,6 +17,4 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-let districtUrl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?';
-
 cron.schedule('* * * * *', cronjobFunc.cronjobFunc);
