@@ -39,6 +39,22 @@ const apiCalls = () => {
     });
 };
 
+const sendSms = async (smsText, phoneNum) => {
+
+  var accountSid = process.env.TWILIO_ACCOUNT_SID;
+  var authToken = process.env.TWILIO_AUTH_TOKEN; 
+
+  var client = new twilio(accountSid, authToken);
+
+  client.messages.create({
+    body: smsText,
+    to: phoneNum,  // Text this number
+    from: '+14053695790' // From a valid Twilio number
+  })
+  .then((message) => console.log(message.sid))
+  .catch( error => console.log("Error in sending message", error))
+};
+
 const parseData = (data, name, phoneNum) => {
   let centers = data.centers;
 
@@ -69,22 +85,6 @@ const parseData = (data, name, phoneNum) => {
   });
 
   console.log('parsed Data for ' +  name + ' - ' + '\n' + JSON.stringify(_.compact(availableCenterCapabilities)));
-};
-
-const sendSms = async (smsText, phoneNum) => {
-
-  var accountSid = process.env.TWILIO_ACCOUNT_SID;
-  var authToken = process.env.TWILIO_AUTH_TOKEN; 
-
-  var client = new twilio(accountSid, authToken);
-
-  client.messages.create({
-    body: smsText,
-    to: phoneNum,  // Text this number
-    from: '+14053695790' // From a valid Twilio number
-  })
-  .then((message) => console.log(message.sid))
-  .catch( error => console.log("Error in sending message", error))
 };
 
 module.exports = ({ cronjobFunc });
