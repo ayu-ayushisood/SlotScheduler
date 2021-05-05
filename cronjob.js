@@ -1,6 +1,5 @@
 const https = require('https');
 const moment = require('moment');
-const nodemailer = require("nodemailer");
 
 var twilio = require('twilio');
 require('dotenv').config();
@@ -8,7 +7,6 @@ require('dotenv').config();
 const requirementData = require('./cronScheduleRequirements.js');
 
 const calendarByDistrictUrl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?';
-
 
 const cronjobFunc = () => {
   console.log('running a task every minute');
