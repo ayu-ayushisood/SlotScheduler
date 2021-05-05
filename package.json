@@ -13,6 +13,7 @@
     "main": "index.js",
     "version": "1.0.0",
     "devDependencies": {
-        "node-cron": "3.0.0"
+        "node-cron": "3.0.0",
+        "underscore": "1.13.1"
     }
 }
