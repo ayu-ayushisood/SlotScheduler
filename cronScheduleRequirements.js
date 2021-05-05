@@ -1,12 +1,16 @@
+require('dotenv').config();
+
+const ayushi_ph_no = process.env.AYUSHI_PH_NO
+const karan_ph_no = process.env.KARAN_PH_NO
 const requirementData = [
     {
         'name': 'Karan Asthana',
         'district_id': 664,
-        'phone': '+918130981235'
+        'phone': karan_ph_no
     }, {
         'name': 'Ayushi Sood',
         'district_id': 193,
-        'phone': '+919466460493'
+        'phone': ayushi_ph_no
     }
 ];
 
