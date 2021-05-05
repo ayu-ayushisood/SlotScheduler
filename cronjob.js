@@ -55,8 +55,6 @@ const sendSms = async () => {
   .catch( error => console.log("Error in sending message", error))
 }
 
-sendSms();
-
 const parseData = (data, name) => {
   let centers = data.centers;
 
@@ -90,4 +88,4 @@ const parseData = (data, name) => {
   console.log('parsed Data for ' +  name + ' - ' + '\n' + JSON.stringify(_.compact(availableCenterCapabilities)));
 }
 
-module.exports = ({ cronjobFunc, apiCalls, sendSms });
+module.exports = ({ cronjobFunc });
