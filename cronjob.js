@@ -30,7 +30,7 @@ const apiCalls = () => {
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
           // console.log(data);
-          let availableData = parseData(JSON.parse(data), reqObj.name);
+          let availableData = parseData(JSON.parse(data), reqObj.name, reqObj.phone);
           // console.log('available Data - ' + JSON.stringify(availableData));
         });
       }).on("error", (err) => {
@@ -39,7 +39,7 @@ const apiCalls = () => {
     });
 };
 
-const sendSms = async () => {
+const sendSms = async (smsText, phoneNum) => {
 
   var accountSid = process.env.TWILIO_ACCOUNT_SID;
   var authToken = process.env.TWILIO_AUTH_TOKEN; 
@@ -47,21 +47,20 @@ const sendSms = async () => {
   var client = new twilio(accountSid, authToken);
 
   client.messages.create({
-    body: 'Your SMS body',
-    to: '+918130981235',  // Text this number
+    body: smsText,
+    to: phoneNum,  // Text this number
     from: '+14053695790' // From a valid Twilio number
   })
   .then((message) => console.log(message.sid))
   .catch( error => console.log("Error in sending message", error))
-}
+};
 
-const parseData = (data, name) => {
+const parseData = (data, name, phoneNum) => {
   let centers = data.centers;
 
   let availableCenterCapabilities = centers.map(center => {
     const centerName = center.name;
     const address = center.address;
-    const pincode = center.pincode;
 
     const sessions = center.sessions;
 
@@ -71,13 +70,13 @@ const parseData = (data, name) => {
       const minAgeLimit = session.min_age_limit;
 
       if (availableCapacity > 0 && minAgeLimit !== 45) {
+        const sms_message = `${availableCapacity} slots available at ${centerName} - ${address}. Min Age - ${minAgeLimit}. Dt: ${date}`;
+        sendSms(sms_message, phoneNum);
         return {
           name: centerName,
           address: address,
-          pincode: pincode,
           available: availableCapacity,
           date: date,
-          // min_age_limit: minAgeLimit,
         };
       }
     });
@@ -86,6 +85,6 @@ const parseData = (data, name) => {
   });
 
   console.log('parsed Data for ' +  name + ' - ' + '\n' + JSON.stringify(_.compact(availableCenterCapabilities)));
-}
+};
 
 module.exports = ({ cronjobFunc });
