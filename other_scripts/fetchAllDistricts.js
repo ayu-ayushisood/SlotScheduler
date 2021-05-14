@@ -1,3 +1,4 @@
+// CONSOLE COMMAND 1
 allDistricts = [];
 $.ajax({
   url: 'https://cdn-api.co-vin.in/api/v2/admin/location/states',
@@ -20,7 +21,12 @@ $.ajax({
   });
 });
 
+
+// CONSOLE COMMAND 2
 districtsIdNameMap = {};
+
+
+// CONSOLE COMMAND 3
 allDistricts.forEach(distObj => {
   districtsIdNameMap[distObj.district_id] = distObj.district_name;
 });
