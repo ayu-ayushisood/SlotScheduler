@@ -19,7 +19,7 @@ KARAN_PH_NO=+91<10_Digit_Number>
 ```
 const karan_ph_no = process.env.KARAN_PH_NO
 ```
-- also, add your district's id in the object (the district id can be found by analyzing the API hit that goes on COWIN when you search for your district). Will make a comprehensive list for this soon.
+- also, add your district's id in the object (refer District-DistrictID-Map file for your district's id)
 - add their objects to the `requirementData` list.
 
 Finally, locally run your script by the following command.
