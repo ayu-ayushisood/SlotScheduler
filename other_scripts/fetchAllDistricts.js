@@ -7,7 +7,6 @@ $.ajax({
 })
 .then(function(data) {
   var allStatesList = data.states;
-  debugger;
   var allStateDistricts = allStatesList.map(function(state) {
     var stateID = state.state_id;
     $.ajax({
